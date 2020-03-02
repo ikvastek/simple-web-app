@@ -1,0 +1,20 @@
+*.DS_Store
+*.sw?
+.#*
+*#
+*~
+.classpath
+.project
+.settings
+
+README.html
+
+# Intellij
+.idea/
+*.iml
+*.iws
+out/
+
+# Maven
+log/*
+target/
