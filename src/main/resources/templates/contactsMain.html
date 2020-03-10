@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/general.html :: headerfiles"></head>
+<body>
+    <div th:replace="fragments/general.html :: header">Header scripts</div>
+    <div th:replace="fragments/topMenuBar">Top menu bar</div>
+    <div class="container">
+        <h2 class="ui header">Contacts main page</h2>
+        <table style="width:300px">
+            <th:block th:each="contact : ${contactsList}">
+                <tr>
+                    <td th:text="${contact.name}">Name: '</td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+    <h1></h1>
+
+    <div th:replace="fragments/general.html :: footer"></div>
+</body>
+</html>

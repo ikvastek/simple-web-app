@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
-<head>
-    <title>Spring Security Example</title>
-</head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      th:with="lang=${#locale.language}"
+      th:lang="${lang}">
+<head th:replace="fragments/general.html :: headerfiles"></head>
 <body>
-<h1>Welcome!</h1>
+    <div th:replace="fragments/general.html :: header">Header scripts</div>
+    <div th:replace="fragments/topMenuBar">Top menu bar</div>
 
-<p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
-
-<p>Click <a th:href="@{/address_book}">here</a> to see contacts page.</p>
+    <div class="container">
+        <h2 class="ui header">Welcome!</h2>
+        <p>Click <a th:href="@{/address_book}">here</a> to see contacts page.</p>
+    </div>
+    <div th:replace="fragments/general.html :: footer"></div>
 </body>
 </html>

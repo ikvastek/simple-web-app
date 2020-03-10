@@ -1,19 +1,50 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
-<head>
-    <title>Spring Security Example </title>
-</head>
+<head th:replace="fragments/general.html :: headerfiles"></head>
 <body>
-<div th:if="${param.error}">
-    Invalid username and password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
+    <div th:replace="fragments/general.html :: header">Header scripts</div>
+    <div th:replace="fragments/topMenuBar">Top menu bar</div>
+
+    <div class="container">
+        <div class="row justify-content-md-center align-items-center">
+            <div class="card">
+                <div class="card-header">
+                    Login
+                </div>
+
+                <div th:if="${param.error}" class="alert alert-warning" role="alert">
+                    Invalid username and password.
+                </div>
+                <div th:if="${param.logout}" class="alert alert-success" role="alert">
+                    You have been logged out.
+                </div>
+
+                <div class="card-body">
+                    <form th:action="@{/login}" method="post">
+                        <div class="form-group">
+                            <label for="inputUsername" th:text="#{msg.username}"></label>
+                            <input name="username"
+                                   type="text"
+                                   class="form-control"
+                                   id="inputUsername"
+                                   placeholder="Enter user name...">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" th:text="#{msg.password}"></label>
+                            <input name="password"
+                                   type="password"
+                                   class="form-control"
+                                   id="inputPassword"
+                                   placeholder="Enter password...">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign In</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/general.html :: footer"></div>
+
 </body>
 </html>
