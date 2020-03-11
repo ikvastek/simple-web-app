@@ -8,21 +8,32 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/home' ? 'active' : ''}">
                 <a class="nav-link" th:href="@{/home}" th:text="#{msg.navbar.home}"><span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI() == '/address_book' ? 'active' : ''}">
                 <a class="nav-link" th:href="@{/address_book}" th:text="#{msg.navbar.contacts}"></a>
             </li>
         </ul>
     </div>
-    <div class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-        <select id="locales" class="form-control form-control-sm" aria-labelledby="bd-versions" th:placeholder="#{lang.change}">
-            <option class="dropdown-item" value=""></option>
-            <option class="dropdown-item" value="en" th:text="#{lang.eng}"></option>
-            <option class="dropdown-item" value="hr" th:text="#{lang.hr}"></option>
-        </select>
-    </div>
+
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"
+               href="#" id="navbarDropdown"
+               role="button"
+               data-toggle="dropdown"
+               aria-haspopup="true"
+               aria-expanded="false"
+               th:text="${#locale}">
+                Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" th:href="@{''(lang=en)}" th:text="#{lang.eng}"></a>
+                <a class="dropdown-item" th:href="@{''(lang=hr)}" th:text="#{lang.hr}"></a>
+            </div>
+        </li>
+    </ul>
 
 
     <form th:action="@{/logout}" method="post">
@@ -30,17 +41,5 @@
     </form>
 
 </nav>
-
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#locales").change(function () {
-            var selectedOption = $('#locales').val();
-            if (selectedOption != ''){
-                window.location.replace('home?lang=' + selectedOption);
-            }
-        });
-    });
-</script>
 
 </html>
